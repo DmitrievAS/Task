@@ -13,9 +13,11 @@ export const getAllGists = () => async (dispatch) => {
         }
         const result = await res.json();
         console.log(result);
-
         dispatch (getGistsSuccess(result));
     } catch (err) {
         dispatch(getGistsFailure(err.message))
     }
 }
+
+
+
