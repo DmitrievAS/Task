@@ -21,13 +21,6 @@ const Gists = () => {
     }, []);
 
 
-    // //удалил и решил прописать заново
-    // const x = gists[0]; // в этом случае gists уже пустой [] и соответственно x - undefined
-    // for ( let i = 1; i <2; ++i) {
-    //     for (let id of x[i].city) {
-    //         console.log(id);
-    //     }
-    // }
     const renderGist = useCallback((gist) => (
         <li key={gist.id}>{gist.id || "No description"}</li>
     ), []);
@@ -46,14 +39,14 @@ const Gists = () => {
     }
     const cityArr = {gists};
     console.log(cityArr);
-    // const cityName = cityArr.gists[0];
+    const cityName = cityArr.gists[0];
 
     // for (let i=1; i<2; ++i) {
     //     for ( let name in cityName.city) {
     //         console.log(name);
     //     }
     // }
-    // console.log(typeof cityName, cityName["city"]);
+    console.log(typeof cityName, cityName);
 
     return (
         <div>
