@@ -1,11 +1,333 @@
-import React from 'react';
+import React, {useState} from 'react';
+import '../App.css';
+import 'react-tabs/style/react-tabs.css';
+import {useSelector} from "react-redux";
+import {DataGrid} from '@mui/x-data-grid';
+import {Box, Typography, Tabs, Tab} from "@mui/material";
 
-const renderTab = (x) => {
+
+// {
+//     field: 'age',
+//         headerName: 'Age',
+//     type: 'number',
+//     width: 90,
+// },
+
+const RenderTab = () => {
+
+    // const columns = [
+    //     {field: 'id', headerName: '№', width: 70, defaultVisible: false},
+    //     {field: 'category', headerName: 'Категория', width: 250},
+    //     {field: 'product', headerName: 'Товар', minWidth: 400},
+    //     {field: 'price_1', headerName: 'Цена 1', width: 70, type: "number"},
+    //     {field: 'price_2', headerName: 'Цена 2', width: 70, type: "number"},
+    //     {field: 'price_3', headerName: 'Цена 3', width: 70, type: "number"},
+    //     {field: 'price_4', headerName: 'Цена 4', width: 70, type: "number"},
+    //     {field: 'price_5', headerName: 'Цена 5', width: 70, type: "number"},
+    //     {field: 'price_6', headerName: 'Цена 6', width: 70, type: "number"},
+    //     {field: 'price_7', headerName: 'Цена 7', width: 70, type: "number"},
+    //     {field: 'price_8', headerName: 'Цена 8', width: 70, type: "number"},
+    //     // {
+    //     //     field: 'age',
+    //     //     headerName: 'Age',
+    //     //     type: 'number',
+    //     //     width: 90,
+    //     // },
+    //     // {
+    //     //     field: 'fullName',
+    //     //     headerName: 'Full name',
+    //     //     description: 'This column has a value getter and is not sortable.',
+    //     //     sortable: false,
+    //     //     width: 160,
+    //     //     valueGetter: (params) =>
+    //     //         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    //     // },
+    // ];
+    //
+    // const rows = [
+    //     {
+    //         id: 1,
+    //         "product": "Уголок перфорированный оцинк.ПУ ( 25*25 ) 3 м",
+    //         "product_id": 1,
+    //         "category": "Профиля для гипсокартона",
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    //     {
+    //         id: 2,
+    //         "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+    //         "product_id": 2,
+    //         "category": "Профиля для гипсокартона",
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    //     {
+    //         id: 3,
+    //         "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+    //         "product_id": 3,
+    //         "category": "Профиля для гипсокартона",
+    //         "category_id": 1,
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    //     {
+    //         id: 4,
+    //         "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+    //         "product_id": 3,
+    //         "category": "Профиля для гипсокартона",
+    //         "category_id": 1,
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    //     {
+    //         id: 5,
+    //         "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+    //         "product_id": 4,
+    //         "category": "Труба профильная",
+    //         "category_id": 2,
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    //     {
+    //         id: 6,
+    //         "product": "Труба профильная стальная 40х20х2,0мм хлыст 6м",
+    //         "product_id": 1,
+    //         "category": "Профиля для гипсокартона",
+    //         "category_id": 1,
+    //         "price_1": 52.50,
+    //         "price_2": 52.50,
+    //         "price_3": 68.31,
+    //         "price_4": 69,
+    //         "price_5": 0,
+    //         "price_6": 0,
+    //         "price_7": 0,
+    //         "price_8": 0
+    //     },
+    // ]
+
+    const initialCity = [{id: 1, name: "Салават"}, {id: 2, name: "Ишимбай"}, {id: 3, name: "Стерлитамак"},
+        {id: 4, name: "Уфа"}]
+    const initialMonitoring = [
+        {
+            "city": 1,
+            "data": [
+                {
+                    "category": "Профиля для гипсокартона",
+                    "category_id": 1,
+                    "products": [
+                        {
+                            "product": "Уголок перфорированный оцинк.ПУ ( 25*25 ) 3 м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                },
+                {
+                    "category": "Труба профильная",
+                    "category_id": 2,
+                    "products": [
+                        {
+                            "product": "Труба профильная стальная 40х20х2,0мм хлыст 6м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            "product": "Труба профильная стальная 20х20х1.5мм хлыст 6м",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city": 2,
+            "data": [
+                {
+                    "category": "Профиля для гипсокартона",
+                    "category_id": 1,
+                    "products": [
+                        {
+                            "product": "Уголок перфорированный оцинк.ПУ ( 25*25 ) 3 м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            "product": "Профиль направляющий ПН ( 28*27 ) 3м 0,45 мм (20)",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                },
+                {
+                    "category": "Труба профильная",
+                    "category_id": 2,
+                    "products": [
+                        {
+                            "product": "Труба профильная стальная 40х20х2,0мм хлыст 6м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            "product": "Труба профильная стальная 20х20х1.5мм хлыст 6м",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    const [value, setValue] = useState(0);
+
+    const city = useSelector(({gists}) => gists.gists);
+
+    function TabPanel(props) {
+        const {children, value, index, ...other} = props;
+
+
+        return (
+            <div
+                role="tabpanel"
+                hidden={value !== index}
+                id={`simple-tabpanel-${index}`}
+                aria-labelledby={`simple-tab-${index}`}
+                {...other}
+            >
+                {value === index && (
+                    <Box sx={{p: 3}}>
+                        <Typography>{children}</Typography>
+                    </Box>
+                )}
+            </div>
+        );
+    }
+
+    function a11yProps(index) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const tabPanelRender = (category) => {
+        console.log("tabPanelRender:", category)
+        return <div key={category.id}>{category}</div>
+        // <div key={`div${data.city}`}>{data.data.category}</div>
+    }
+
     return (
-        <div>
+        <div style={{height: 800, width: '100%'}}>
+            <h3>Мониторинг</h3>
 
+            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                <Tabs value={value} onChange={handleChange} aria-label="monitoring">
+                    {initialCity.map((city) => <Tab label={`${city.name}`} {...a11yProps(city.id)}/>)}
+                </Tabs>
+            </Box>
+            {initialCity.map((data,index) => <TabPanel
+                value={value}
+                index={index}
+                >
+                1
+            </TabPanel>)}
         </div>
     );
-};
+}
 
-export default renderTab;
+export default RenderTab;
