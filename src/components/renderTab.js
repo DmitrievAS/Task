@@ -320,12 +320,14 @@ const RenderTab = () => {
                     {initialCity.map((city) => <Tab label={`${city.name}`} {...a11yProps(city.id)}/>)}
                 </Tabs>
             </Box>
+
             {initialCity.map((data,index) => <TabPanel
                 value={value}
                 index={index}
                 >
                 1
             </TabPanel>)}
+
         </div>
     );
 }
