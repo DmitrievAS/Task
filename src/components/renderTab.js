@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import '../App.css';
 import 'react-tabs/style/react-tabs.css';
 import {useSelector} from "react-redux";
-import {DataGrid} from '@mui/x-data-grid';
 import {Box, Typography, Tabs, Tab} from "@mui/material";
+import RenderGrid from "./renderGrid";
 
 
 // {
@@ -271,7 +271,7 @@ const RenderTab = () => {
     ]
     const [value, setValue] = useState(0);
 
-    const city = useSelector(({gists}) => gists.gists);
+    // const city = useSelector(({gists}) => gists.gists);
 
     function TabPanel(props) {
         const {children, value, index, ...other} = props;
@@ -281,7 +281,7 @@ const RenderTab = () => {
             <div
                 role="tabpanel"
                 hidden={value !== index}
-                id={`simple-tabpanel-${index}`}
+                id={`${index}`}
                 aria-labelledby={`simple-tab-${index}`}
                 {...other}
             >
@@ -294,39 +294,35 @@ const RenderTab = () => {
         );
     }
 
-    function a11yProps(index) {
-        return {
-            id: `simple-tab-${index}`,
-            'aria-controls': `simple-tabpanel-${index}`,
-        };
-    }
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const tabPanelRender = (category) => {
-        console.log("tabPanelRender:", category)
-        return <div key={category.id}>{category}</div>
+    const tabPanelRender = (cityName) => {
+        console.log("tabPanelRender:", cityName)
+        return <div>{cityName}</div>
         // <div key={`div${data.city}`}>{data.data.category}</div>
     }
 
     return (
-        <div style={{height: 800, width: '100%'}}>
+        <div className={"container"} style={{height: "100%", width: '100%'}}>
             <h3>Мониторинг</h3>
 
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="monitoring">
-                    {initialCity.map((city) => <Tab label={`${city.name}`} {...a11yProps(city.id)}/>)}
+                    {initialCity.map((city) => <Tab label={`${city.name}`} value={city.id}/>)}
                 </Tabs>
             </Box>
 
-            {initialCity.map((data,index) => <TabPanel
+            {initialCity.map((data) => <TabPanel
                 value={value}
-                index={index}
-                >
-                1
+                index={data.id}
+            >
+                <div style={{height: 800, width: '100%'}}>
+                    <RenderGrid dataId={data.id}/>
+                </div>
             </TabPanel>)}
+
 
         </div>
     );
