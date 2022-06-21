@@ -286,7 +286,7 @@ const RenderTab = () => {
                 {...other}
             >
                 {value === index && (
-                    <Box sx={{p: 3}}>
+                    <Box sx={{p: 2, fontWeight: 'medium'}}>
                         <Typography>{children}</Typography>
                     </Box>
                 )}
@@ -305,10 +305,11 @@ const RenderTab = () => {
     }
 
     return (
-        <div className={"container"} style={{height: "100%", width: '100%'}}>
-            <h3>Мониторинг</h3>
+        <div className={"container"}>
+            <h3 className={"monitoring-title-center"}>Мониторинг цен по городам</h3>
+            <div className={"monitoring-data"}>Дата: </div>
 
-            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+            <Box sx={{borderBottom: 2, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="monitoring">
                     {initialCity.map((city) => <Tab label={`${city.name}`} value={city.id}/>)}
                 </Tabs>
@@ -319,7 +320,7 @@ const RenderTab = () => {
                 index={data.id}
             >
                 <div style={{height: 800, width: '100%'}}>
-                    <RenderGrid dataId={data.id}/>
+                    <RenderGrid dataId={data.id} monitoring={initialMonitoring}/>
                 </div>
             </TabPanel>)}
 

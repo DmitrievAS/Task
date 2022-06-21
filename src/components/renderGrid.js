@@ -1,19 +1,19 @@
 import React from 'react';
 import {DataGrid} from '@mui/x-data-grid';
 
-const RenderGrid = (dataId) => {
+const RenderGrid = (dataId, monitoring) => {
     const columns = [
         {field: 'id', headerName: '№', width: 70, defaultVisible: false},
         {field: 'category', headerName: 'Категория', width: 250},
         {field: 'product', headerName: 'Товар', minWidth: 400},
-        {field: 'price_1', headerName: 'Цена 1', width: 70, type: "number"},
-        {field: 'price_2', headerName: 'Цена 2', width: 70, type: "number"},
-        {field: 'price_3', headerName: 'Цена 3', width: 70, type: "number"},
-        {field: 'price_4', headerName: 'Цена 4', width: 70, type: "number"},
-        {field: 'price_5', headerName: 'Цена 5', width: 70, type: "number"},
-        {field: 'price_6', headerName: 'Цена 6', width: 70, type: "number"},
-        {field: 'price_7', headerName: 'Цена 7', width: 70, type: "number"},
-        {field: 'price_8', headerName: 'Цена 8', width: 70, type: "number"}
+        {field: 'price_1', headerName: 'Стройландия_Иш', minWidth: 140, type: "number"},
+        {field: 'price_2', headerName: 'Хозмастер', minWidth: 140, type: "number"},
+        {field: 'price_3', headerName: 'Проремонт', minWidth: 140, type: "number"},
+        {field: 'price_4', headerName: 'ЮУКС', minWidth: 140, type: "number"},
+        {field: 'price_5', headerName: 'Самоделкин', minWidth: 140, type: "number"},
+        {field: 'price_6', headerName: 'Строймаркет', minWidth: 140, type: "number"},
+        {field: 'price_7', headerName: 'БСК Термотрейд', minWidth: 140, type: "number"},
+        {field: 'price_8', headerName: 'Цена 8', minWidth: 140, type: "number"}
     ]
 
     const rows = [
@@ -107,6 +107,8 @@ const RenderGrid = (dataId) => {
         },
     ]
 
+
+
     console.log(dataId);
     return (
         <DataGrid
@@ -114,6 +116,8 @@ const RenderGrid = (dataId) => {
             columns={columns}
             rowsPerPageOptions={[10, 20, 50]}
             checkboxSelection
+            autoHeight
+            headerHeight={75}
         />
 
     );
