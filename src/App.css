@@ -88,6 +88,14 @@
   display: block;
 }
 
+.monitoring-title-center {
+  display: flex;
+  justify-content: center;
+}
+
+.monitoring-data {
+  margin-left: 25px;
+}
 
 @keyframes App-logo-spin {
   from {
