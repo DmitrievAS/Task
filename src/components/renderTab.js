@@ -174,6 +174,106 @@ const RenderTab = () => {
                     ]
                 }
             ]
+        },
+        {
+            "city": 3,
+            "data": [
+            ]
+        },
+        {
+            "city": 4,
+            "data": [
+                {
+                    "category": "Профиля для гипсокартона",
+                    "category_id": 1,
+                    "products": [
+                        {
+                            id: 1,
+                            "product": "Уголок перфорированный оцинк.ПУ ( 22*22 ) 2 м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            id: 2,
+                            "product": "Профиль направляющий ПН ( 20*20 ) 3м 0,45 мм (20)",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                },
+                {
+                    "category": "Труба профильная",
+                    "category_id": 2,
+                    "products": [
+                        {
+                            id: 3,
+                            "product": "Труба профильная стальная 20х20х2,0мм хлыст 6м",
+                            "product_id": 1,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            id: 4,
+                            "product": "Труба профильная стальная 20х20х1.5мм хлыст 6м",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            id: 5,
+                            "product": "Труба профильная стальная 20х20х1.5мм хлыст 6м",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        },
+                        {
+                            id: 6,
+                            "product": "Труба профильная стальная 20х20х1.5мм хлыст 6м",
+                            "product_id": 2,
+                            "price_1": 52.50,
+                            "price_2": 52.50,
+                            "price_3": 68.31,
+                            "price_4": 69,
+                            "price_5": 0,
+                            "price_6": 0,
+                            "price_7": 0,
+                            "price_8": 0
+                        }
+                    ]
+                }
+            ]
         }
     ]
 
@@ -184,7 +284,6 @@ const RenderTab = () => {
 
     function TabPanel(props) {
         const {children, value, index, ...other} = props;
-
 
         return (
             <div
@@ -207,10 +306,12 @@ const RenderTab = () => {
         setValue(newValue);
     };
 
+
+//todo: узнать в каком формате будет выгружаться дата и откуда, дополнить.
     return (
         <div className={"container"}>
             <h3 className={"monitoring-title-center"}>Мониторинг цен по городам</h3>
-            <div className={"monitoring-data"}>Дата:</div>
+            <div className={"monitoring-data"}>Дата: 21.06.2022</div>
 
             <Box sx={{borderBottom: 2, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="monitoring">
